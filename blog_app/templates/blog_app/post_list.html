@@ -2,44 +2,34 @@
  
  
 {% block content %}
-<h1>Welcome to The BATCH Newsletter by Andrew Ng!</h1>
-<a href="{% url 'post_create' %}" style="display: inline-block; margin-bottom: 1.5rem; padding: 0.5rem 1rem; background-color: #28a745; color: white; text-decoration: none; border-radius: 4px;">
-    + New Post
-</a>
+<h1 class="mb-2">Welcome to The BATCH Newsletter by Andrew Ng!</h1>
+<a href="{% url 'post_create' %}" class="btn btn-success mb-2">+ New Post</a>
  
  
 {% if posts %}
-    <div style="margin-top: 2rem;">
+    <div class="mt-2">
         {% for post in posts %}
-        <div style="border: 1px solid #ddd; padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
-            <h2 style="margin-bottom: 0.5rem;">
-                <a href="{% url 'post_details' post.pk %}" style="color: #0366d6; text-decoration: none;">
-                    {{ post.title }}
-                </a>
+        <div class="card">
+            <h2 class="card-title">
+                <a href="{% url 'post_details' post.pk %}" class="card-title">{{ post.title }}</a>
             </h2>
-            <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
+            <p class="card-meta">
                 Published: {{ post.published_date|date:"F d, Y \a\t g:i A" }}
             </p>
-            <p style="margin-bottom: 1rem; color: #333;">
+            <p class="mb-1">
                 {{ post.content|truncatewords:30 }}
             </p>
             <div style="display: flex; gap: 0.5rem;">
-                <a href="{% url 'post_details' post.pk %}" style="padding: 0.5rem 1rem; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem;">
-                    View
-                </a>
-                <a href="{% url 'post_update' post.pk %}" style="padding: 0.5rem 1rem; background-color: #ffc107; color: black; text-decoration: none; border-radius: 4px; font-size: 0.9rem;">
-                    Edit
-                </a>
-                <a href="{% url 'post_delete' post.pk %}" style="padding: 0.5rem 1rem; background-color: #dc3545; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9rem;">
-                    Delete
-                </a>
+                <a href="{% url 'post_details' post.pk %}" class="btn btn-primary" style="font-size: 0.9rem;">View</a>
+                <a href="{% url 'post_update' post.pk %}" class="btn btn-warning" style="font-size: 0.9rem;">Edit</a>
+                <a href="{% url 'post_delete' post.pk %}" class="btn btn-danger" style="font-size: 0.9rem;">Delete</a>
             </div>
         </div>
         {% endfor %}
     </div>
 {% else %}
-    <p style="color: #666; margin-top: 2rem;">
-        No blog posts yet. <a href="{% url 'post_create' %}" style="color: #0366d6;">Create one now</a>
+    <p class="text-muted mt-2">
+        No blog posts yet. <a href="{% url 'post_create' %}" class="card-title">Create one now</a>
     </p>
 {% endif %}
 {% endblock %}
