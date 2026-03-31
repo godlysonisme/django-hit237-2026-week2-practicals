@@ -46,14 +46,17 @@
 </head>
 <body>
     <nav>
-        <a href="#">Home</a>
+        <a href="{% url 'post_list' %}">Blog Posts</a>
         <a href="#">About</a>
     </nav>
+    
     <main>
         {% block content %}{% endblock %}
     </main>
+    
     <footer>
         <p>&copy; 2026 Andrew Ng. All rights reserved.</p>
     </footer>
 </body>
 </html>
+ 
